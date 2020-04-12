@@ -28,6 +28,7 @@ services:
       - postgresql
     volumes:
       - ./data/artifactory:/var/opt/jfrog/artifactory
+#      - ./provision/artifactory/backup.zip:/home/backup/backup.zip
     environment:
       - DB_TYPE=postgresql
       - DB_USER=artifactory
