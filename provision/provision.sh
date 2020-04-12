@@ -16,7 +16,13 @@ function createDataFolders(){
 function provisionArtifactory(){
   cd $PROVISION_FOLDER/artifactory
   echo "********** PROVISIONING ARTIFACTORY **********"
-  docker-compose -f artifactory-postgres.yml up -d
+  sudo chmod +x ./configure.sh
+  ./configure.sh "$HOST"
+}
+
+function provisionJenkins(){
+  cd $PROVISION_FOLDER/jenkins
+  echo "********** PROVISIONING JENKINS **********"
   sudo chmod +x ./configure.sh
   ./configure.sh "$HOST"
 }
@@ -31,3 +37,4 @@ echo "PROVISIONING HOST $HOST"
 createDataFolders
 installDocker
 provisionArtifactory
+provisionJenkins
