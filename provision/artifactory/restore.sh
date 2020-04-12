@@ -44,7 +44,6 @@ function restoreBackup() {
   RESTORE_BODY="{\"path\": \"$CONTAINER_BACKUP_FILE\",\"excludeContent\":false,\"excludeMetadata\":false,\"verbose\":false,\"zip\":true,\"action\":\"system\"}"
   CONTAINER_ID=$(docker ps -aqf "name=^artifactory$")
   docker cp $BACKUP_FILE "$CONTAINER_ID":$CONTAINER_BACKUP_FILE
-  curl -X POST $RESTORE_URL -H "Content-Type: application/json" -H "X-Requested-With: artUI" -H "Request-Agent: artifactoryUI" -H "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.2 Safari/605.1.15" --data "$RESTORE_BODY" --cookie $COOKIES_FILE
   RESPONSE_CODE=$(curl -X POST $RESTORE_URL -s -o /dev/null -w "%{http_code}" -H "Content-Type: application/json" -H "X-Requested-With: artUI" -H "Request-Agent: artifactoryUI" -H "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.2 Safari/605.1.15" --data "$RESTORE_BODY" --cookie $COOKIES_FILE)
   if [ $RESPONSE_CODE -eq 200 ]; then
     printf "${GREEN}Artifactory has been configured successfully!${NC}"
