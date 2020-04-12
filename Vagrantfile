@@ -1,19 +1,24 @@
-Vagrant.configure(2) do |config|
-  config.vm.box = "ubuntu/bionic64"
+require 'json'
 
-  config.vm.network "forwarded_port", guest: 8081, host: 8081
-  
-  config.vm.provider "virtualbox" do |vb|
-    vb.memory = "2048"
+config_data = JSON.parse(File.read('config.json'))
+net_adapter = "en1: Wi-Fi (AirPort)" # Change this according to your PC
+vm_data_folder = "/home/vagrant/data"
+
+Vagrant.configure(2) do |config|
+  config.vm.provider :virtualbox do |v, override|
+    config.vm.box = "ubuntu/bionic64"
+
+    v.customize ["modifyvm", :id, "--memory", config_data["mem"]]
+    v.customize ["modifyvm", :id, "--cpus", config_data["cpus"]]
+
+    override.vm.network :public_network, bridge: net_adapter, ip: "#{config_data["ip"]}"
+    override.vm.hostname = config_data["hostname"]
+    v.name = config_data["hostname"]
+
+    # config.vm.synced_folder "./data", vm_data_folder # Uncomment this if you want storage outside the VM
   end
 
-  config.vm.provision "file", source: "./provision/artifactory/backup.zip", destination: '/home/vagrant/provision/backup.zip'
-  config.vm.provision "file", source: "./provision/artifactory/restore.sh", destination: '/home/vagrant/provision/restore.sh'
-  config.vm.provision "file", source: "./provision/artifactory/cleanup.sh", destination: '/home/vagrant/provision/cleanup.sh'
-  config.vm.provision "file", source: "./provision/provision.sh", destination: '/home/vagrant/provision/provision.sh'
-  config.vm.provision "file", source: "./artifactory-postgres.yml", destination: '/home/vagrant/provision/docker-compose.yml'
-
-  config.vm.provision "shell", path: "./provision/install-docker.sh"
-  config.vm.provision "shell", path: "./provision/provision.sh"
+  config.vm.provision "file", source: "./provision", destination: '/home/vagrant/provision'
+  config.vm.provision "shell", path: "./provision/provision.sh", :args => [config_data["ip"]]
 
 end
