@@ -6,7 +6,7 @@ sudo apt-get install -y apt-transport-https ca-certificates curl software-proper
 sudo apt-get install -y docker.io > /dev/null 2>&1
 sudo systemctl start docker
 sudo systemctl enable docker
-sudo usermod -aG docker $USER
+sudo usermod -aG docker vagrant
 sudo systemctl restart docker
 docker --version
 
