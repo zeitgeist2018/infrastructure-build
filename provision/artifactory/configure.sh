@@ -56,6 +56,8 @@ function restoreBackup() {
   rm $COOKIES_FILE
 }
 
+docker-compose up -d
+
 waitForReadiness
 login
 restoreBackup

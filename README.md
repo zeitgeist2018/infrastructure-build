@@ -27,4 +27,5 @@ The VM configuration is stored in the `config.json` file.
 Just execute `./redeploy.sh`.
 
 Access the various components through their specific urls:
+* Jenkins: `http://192.168.1.100:8080`
 * Artifactory: `http://192.168.1.100:8081`
