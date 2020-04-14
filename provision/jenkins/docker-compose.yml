@@ -3,6 +3,7 @@ services:
   jenkins:
     container_name: jenkins-master
     image: master
+    restart: unless-stopped
     build:
       context: ./master
     ports:
