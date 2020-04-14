@@ -5,14 +5,14 @@
     <keepDependencies>false</keepDependencies>
     <properties>
         <com.dabsquared.gitlabjenkins.connection.GitLabConnectionProperty plugin="gitlab-plugin@1.5.13">
-            <gitLabConnection></gitLabConnection>
+            <gitLabConnection>gitlab</gitLabConnection>
         </com.dabsquared.gitlabjenkins.connection.GitLabConnectionProperty>
     </properties>
-    <scm class="hudson.plugins.git.GitSCM" plugin="git@3.12.1">
+    <scm class="hudson.plugins.git.GitSCM" plugin="git@4.2.2">
         <configVersion>2</configVersion>
         <userRemoteConfigs>
             <hudson.plugins.git.UserRemoteConfig>
-                <url>http://192.168.1.128:8082/cristianlm/jenkins-bootstrap.git</url>
+                <url>http://192.168.1.128:8082/infrastructure-build/jenkins-bootstrap.git</url>
             </hudson.plugins.git.UserRemoteConfig>
         </userRemoteConfigs>
         <branches>
@@ -48,27 +48,14 @@
             <excludeBranchesSpec></excludeBranchesSpec>
             <sourceBranchRegex></sourceBranchRegex>
             <targetBranchRegex></targetBranchRegex>
-            <secretToken>{AQAAABAAAAAQXGz2fEhaR2ttuWAtVzMxVximWvpO+eTMlDy81LHpPAY=}</secretToken>
+            <secretToken>{AQAAABAAAAAQcbxrnExjBIdjmZowrKsYePcM6dQhD57rjSnCOz/mLfs=}</secretToken>
             <pendingBuildName></pendingBuildName>
             <cancelPendingBuildsOnUpdate>false</cancelPendingBuildsOnUpdate>
         </com.dabsquared.gitlabjenkins.GitLabPushTrigger>
     </triggers>
     <concurrentBuild>false</concurrentBuild>
     <builders>
-        <javaposse.jobdsl.plugin.ExecuteDslScripts plugin="job-dsl@1.76">
-            <usingScriptText>false</usingScriptText>
-            <sandbox>false</sandbox>
-            <ignoreExisting>false</ignoreExisting>
-            <ignoreMissingFiles>false</ignoreMissingFiles>
-            <failOnMissingPlugin>false</failOnMissingPlugin>
-            <failOnSeedCollision>false</failOnSeedCollision>
-            <unstableOnDeprecation>false</unstableOnDeprecation>
-            <removedJobAction>IGNORE</removedJobAction>
-            <removedViewAction>IGNORE</removedViewAction>
-            <removedConfigFilesAction>IGNORE</removedConfigFilesAction>
-            <lookupStrategy>JENKINS_ROOT</lookupStrategy>
-        </javaposse.jobdsl.plugin.ExecuteDslScripts>
-        <javaposse.jobdsl.plugin.ExecuteDslScripts plugin="job-dsl@1.76">
+        <javaposse.jobdsl.plugin.ExecuteDslScripts plugin="job-dsl@1.77">
             <targets>jobs/*.groovy</targets>
             <usingScriptText>false</usingScriptText>
             <sandbox>false</sandbox>
