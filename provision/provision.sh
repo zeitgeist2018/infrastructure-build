@@ -43,6 +43,6 @@ echo "PROVISIONING HOST $HOST"
 
 createDataFolders
 installDocker
-#provisionArtifactory $HOST
+provisionArtifactory $HOST
 provisionJenkins
 provisionGitlab $HOST
