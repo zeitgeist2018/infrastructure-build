@@ -1,4 +1,4 @@
 #!/bin/bash
 
-$HOST=$1
+HOST=$1
 docker-compose up -d
