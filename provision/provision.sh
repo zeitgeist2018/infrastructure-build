@@ -27,6 +27,13 @@ function provisionJenkins(){
   ./configure.sh "$HOST"
 }
 
+function provisionGitlab(){
+  cd $PROVISION_FOLDER/jenkins
+  echo "********** PROVISIONING JENKINS **********"
+  sudo chmod +x ./configure.sh
+  ./configure.sh "$HOST"
+}
+
 function installDocker(){
   cd $PROVISION_FOLDER
   ./install-docker.sh
@@ -36,5 +43,6 @@ echo "PROVISIONING HOST $HOST"
 
 createDataFolders
 installDocker
-provisionArtifactory
+#provisionArtifactory $HOST
 provisionJenkins
+provisionGitlab $HOST

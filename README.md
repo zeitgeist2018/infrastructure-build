@@ -29,3 +29,15 @@ Just execute `./redeploy.sh`.
 Access the various components through their specific urls:
 * Jenkins: `http://192.168.1.100:8080`
 * Artifactory: `http://192.168.1.100:8081`
+* GitLab: `http://192.168.1.100:8082`
+
+
+# Artifactory
+Username: `admin`\
+Password: `passw0rd`
+
+#Jenkins
+
+#Gitlab
+Username: `root`\
+Password: `gitlabroot`
