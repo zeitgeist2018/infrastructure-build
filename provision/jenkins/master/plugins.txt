@@ -2,8 +2,8 @@ active-directory:2.16
 authorize-project:1.3.0
 branch-api:2.5.5
 credentials:2.3.5
-envinject:2.3.0
 envinject-api:1.7
+envinject:2.3.0
 git:4.2.2
 gitlab-plugin:1.5.13
 gitlab:1.5.13
