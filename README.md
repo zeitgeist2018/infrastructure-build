@@ -12,14 +12,16 @@ to work with this platform will be provided.
 
 # Components ready
 * `JFrog Artifactory`: A place to store and manage the
-binaries/artifacts you generate from your projects
-
-# Components not yet ready
-* `Gradle plugins`: They provide your project with
- the foundation to integrate with the platform.
+binaries/artifacts you generate from your projects.
 * `Jenkins`: Most popular CI/CD tool, to help you build, 
 test and deploy your projects.
 * `Gitlab`: A place to store your projects locally
+* `Gradle plugins`: They provide your project with
+ the foundation to integrate with the platform.
+ 
+# Components not yet ready
+* `Keycloak/LDAP`: Centralized authentication component
+for the platform.
 
 # Configure it
 The VM configuration is stored in the `config.json` file.
