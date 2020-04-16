@@ -4,14 +4,14 @@ RED='\n\033[0;31m'
 GREEN='\n\033[0;32m'
 NC='\033[0m'
 
+docker-compose up -d
+
 MASTER_NAME="gitlab-master"
 RUNNER_NAME="gitlab-runner-0"
 MASTER_ID=$(docker ps -aqf "name=^$MASTER_NAME")
 RUNNER_ID=$(docker ps -aqf "name=^$RUNNER_NAME")
 MASTER_FOLDER="./master"
 RUNNER_FOLDER="./runner"
-
-docker-compose up -d
 
 function waitForReadiness() {
   PING_URL="$GITLAB_URL/users/sign_in" # TODO: Use actual /-/health endpoint, which currently doesn't work
@@ -22,8 +22,7 @@ function waitForReadiness() {
     if [ $RESPONSE_CODE -eq 302 ] ; then
       break
     fi
-#    echo -ne "."
-    echo "$PING_URL response: $RESPONSE_CODE"
+    echo -ne "."
     sleep 5
   done
   printf "\n${GREEN}Gitlab ready${NC}"
@@ -31,10 +30,12 @@ function waitForReadiness() {
 
 function restore() {
   echo "********** RESTORING GITLAB BACKUP **********"
+
   docker cp $MASTER_FOLDER/dump_gitlab_backup.tar $MASTER_ID:/var/opt/gitlab/backups/dump_gitlab_backup.tar
   docker exec -t $MASTER_NAME chown git.git /var/opt/gitlab/backups/dump_gitlab_backup.tar
-  echo "Executing restore"
-  docker exec -it $MASTER_NAME gitlab-backup restore BACKUP=dump
+
+  docker exec -t $MASTER_NAME gitlab-backup restore BACKUP=dump force=yes
+  docker cp $MASTER_FOLDER/config/gitlab.rb $MASTER_ID:/etc/gitlab/gitlab.rb
   docker cp $MASTER_FOLDER/config/gitlab-secrets.json $MASTER_ID:/etc/gitlab/gitlab-secrets.json
   echo "Restarting gitlab"
   docker restart $MASTER_NAME
@@ -46,3 +47,4 @@ function restore() {
 
 waitForReadiness
 restore
+waitForReadiness
