@@ -4,10 +4,6 @@ RED='\n\033[0;31m'
 GREEN='\n\033[0;32m'
 NC='\033[0m'
 
-HOME="/home/vagrant"
-HOST=$1
-ARTIFACTORY_PORT="8081"
-ARTIFACTORY_URL="$HOST:$ARTIFACTORY_PORT"
 COOKIES_FILE="artifactory-cookies"
 BACKUP_FILE="$HOME/provision/artifactory/backup.zip"
 CONTAINER_BACKUP_FILE="/home/backup.zip"

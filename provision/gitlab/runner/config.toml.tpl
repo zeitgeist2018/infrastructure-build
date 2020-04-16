@@ -6,7 +6,7 @@ check_interval = 0
 
 [[runners]]
   name = "gitlab-runner-0"
-  url = "http://192.168.1.128:8082"
+  url = "{{ .GITLAB_URL }}"
   token = "uKXxVHFoVs2wDf4HHaqr"
   executor = "docker"
   [runners.custom_build_dir]

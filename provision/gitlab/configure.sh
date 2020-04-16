@@ -4,9 +4,6 @@ RED='\n\033[0;31m'
 GREEN='\n\033[0;32m'
 NC='\033[0m'
 
-HOST=$1
-PORT="8082"
-GITLAB_URL="$HOST:$PORT"
 MASTER_NAME="gitlab-master"
 RUNNER_NAME="gitlab-runner-0"
 MASTER_ID=$(docker ps -aqf "name=^$MASTER_NAME")
@@ -16,16 +13,17 @@ RUNNER_FOLDER="./runner"
 
 docker-compose up -d
 
-
 function waitForReadiness() {
   PING_URL="$GITLAB_URL/users/sign_in" # TODO: Use actual /-/health endpoint, which currently doesn't work
+#  PING_URL="$GITLAB_URL/-/health"
   echo -ne "Waiting for Gitlab to be ready"
   while :; do
     RESPONSE_CODE=$(curl -s -o /dev/null -w "%{http_code}" $PING_URL)
-    if [ $RESPONSE_CODE -eq 200 ] ; then
+    if [ $RESPONSE_CODE -eq 302 ] ; then
       break
     fi
-    echo -ne "."
+#    echo -ne "."
+    echo "$PING_URL response: $RESPONSE_CODE"
     sleep 5
   done
   printf "\n${GREEN}Gitlab ready${NC}"
