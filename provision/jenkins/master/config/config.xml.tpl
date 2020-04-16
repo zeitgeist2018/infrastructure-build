@@ -47,9 +47,9 @@
           </default>
           <int>2</int>
           <string>ARTIFACTORY_URL</string>
-          <string>http://192.168.1.128:8081</string>
+          <string>{{ .ARTIFACTORY_URL }}</string>
           <string>GIT_URL</string>
-          <string>http://192.168.1.128:8082</string>
+          <string>{{ .GITLAB_URL }}</string>
         </tree-map>
       </envVars>
     </hudson.slaves.EnvironmentVariablesNodeProperty>

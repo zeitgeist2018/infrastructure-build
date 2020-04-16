@@ -21,7 +21,7 @@ services:
     image: docker.bintray.io/jfrog/artifactory-oss:6.18.1
     container_name: artifactory
     ports:
-      - 8081:8081
+      - {{ .ARTIFACTORY_PORT }}:8081
     depends_on:
       - postgresql
     links:

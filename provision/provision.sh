@@ -1,10 +1,27 @@
 #!/bin/bash
+
 set -e
 
-HOST=$1
-HOME="/home/vagrant"
-PROVISION_FOLDER="$HOME/provision"
-DATA_FOLDER="$HOME/data"
+#HOST=$1
+#PROVISION_FOLDER="$HOME/provision"
+#DATA_FOLDER="$HOME/data"
+
+export HOST="$1"
+export HOME="/home/vagrant"
+export PROVISION_FOLDER="$HOME/provision"
+export DATA_FOLDER="$HOME/data"
+#export HOME="$HOME"
+
+export JENKINS_PORT="8080"
+export ARTIFACTORY_PORT="8081"
+export GITLAB_PORT="8082"
+export JENKINS_URL="http://$HOST:$JENKINS_PORT"
+export ARTIFACTORY_URL="http://$HOST:$ARTIFACTORY_PORT"
+export GITLAB_URL="http://$HOST:$GITLAB_PORT"
+
+cd "$PROVISION_FOLDER"
+source ./util.sh
+
 
 function createDataFolders(){
   cd $HOME
@@ -29,7 +46,7 @@ function provisionJenkins(){
 
 function provisionGitlab(){
   cd $PROVISION_FOLDER/gitlab
-  echo "********** PROVISIONING JENKINS **********"
+  echo "********** PROVISIONING GITLAB **********"
   sudo chmod +x ./configure.sh
   ./configure.sh "$HOST"
 }
@@ -42,7 +59,9 @@ function installDocker(){
 echo "PROVISIONING HOST $HOST"
 
 createDataFolders
+installTpl
+parseTplTemplates $PROVISION_FOLDER
 installDocker
-#provisionArtifactory $HOST
+#provisionArtifactory
 #provisionJenkins
-provisionGitlab $HOST
+provisionGitlab

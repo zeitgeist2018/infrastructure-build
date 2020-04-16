@@ -12,7 +12,7 @@
     <configVersion>2</configVersion>
     <userRemoteConfigs>
       <hudson.plugins.git.UserRemoteConfig>
-        <url>http://192.168.1.128:8082/infrastructure-build/jenkins-bootstrap.git</url>
+        <url>{{ .GITLAB_URL }}/infrastructure-build/jenkins-bootstrap.git</url>
       </hudson.plugins.git.UserRemoteConfig>
     </userRemoteConfigs>
     <branches>

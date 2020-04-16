@@ -1,0 +1,18 @@
+#!/bin/bash
+
+function installTpl() {
+  TPL_VERSION="v0.4.6"
+  TPL_URL="https://github.com/schneidexe/tpl/releases/download/$TPL_VERSION/tpl-linux-amd64"
+#  curl -fsSLo /bin/tpl $TPL_URL &&
+#  chmod +x /bin/tpl &&
+  curl -fsSLo /usr/local/bin/tpl $TPL_URL &&
+  chmod +x /usr/local/bin/tpl &&
+  tpl -v
+}
+
+function parseTplTemplates() {
+  find "$1" -type f -name "*.tpl" | while read file; do
+    echo "Parsing template ${file%.tpl}"
+    tpl -t "${file}" > "${file%.tpl}" #&& rm "${file}"
+  done
+}
