@@ -2,15 +2,10 @@
 
 set -e
 
-#HOST=$1
-#PROVISION_FOLDER="$HOME/provision"
-#DATA_FOLDER="$HOME/data"
-
 export HOST="$1"
 export HOME="/home/vagrant"
 export PROVISION_FOLDER="$HOME/provision"
 export DATA_FOLDER="$HOME/data"
-#export HOME="$HOME"
 
 export JENKINS_PORT="8080"
 export ARTIFACTORY_PORT="8081"
@@ -34,21 +29,21 @@ function provisionArtifactory(){
   cd $PROVISION_FOLDER/artifactory
   echo "********** PROVISIONING ARTIFACTORY **********"
   sudo chmod +x ./configure.sh
-  ./configure.sh "$HOST"
+  ./configure.sh &
 }
 
 function provisionJenkins(){
   cd $PROVISION_FOLDER/jenkins
   echo "********** PROVISIONING JENKINS **********"
   sudo chmod +x ./configure.sh
-  ./configure.sh "$HOST"
+  ./configure.sh &
 }
 
 function provisionGitlab(){
   cd $PROVISION_FOLDER/gitlab
   echo "********** PROVISIONING GITLAB **********"
   sudo chmod +x ./configure.sh
-  ./configure.sh "$HOST"
+  ./configure.sh &
 }
 
 function installDocker(){
@@ -62,6 +57,13 @@ createDataFolders
 installTpl
 parseTplTemplates $PROVISION_FOLDER
 installDocker
-#provisionArtifactory
-#provisionJenkins
+provisionArtifactory
+provisionJenkins
 provisionGitlab
+
+wait
+
+echo "${GREEN}The build platform is ready for you to use :)"
+echo "ARTIFACTORY URL: $ARTIFACTORY_URL"
+echo "JENKINS URL: $JENKINS_URL"
+echo "GITLAB URL: $GITLAB_URL${NC}"

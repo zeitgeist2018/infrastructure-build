@@ -1,8 +1,6 @@
 #!/bin/bash
 
-RED='\n\033[0;31m'
-GREEN='\n\033[0;32m'
-NC='\033[0m'
+source "$PROVISION_FOLDER/util.sh"
 
 docker-compose up -d
 
@@ -23,6 +21,7 @@ function waitForReadiness() {
       break
     fi
     echo -ne "."
+    echo "$PING_URL response: $RESPONSE_CODE"
     sleep 5
   done
   printf "\n${GREEN}Gitlab ready${NC}"
