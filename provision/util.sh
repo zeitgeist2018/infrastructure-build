@@ -1,5 +1,9 @@
 #!/bin/bash
 
+export RED='\n\033[0;31m'
+export GREEN='\n\033[0;32m'
+export NC='\033[0m'
+
 function installTpl() {
   TPL_VERSION="v0.4.6"
   TPL_URL="https://github.com/schneidexe/tpl/releases/download/$TPL_VERSION/tpl-linux-amd64"

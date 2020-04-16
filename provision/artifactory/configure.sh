@@ -1,8 +1,6 @@
 #!/bin/bash
 
-RED='\n\033[0;31m'
-GREEN='\n\033[0;32m'
-NC='\033[0m'
+source "$PROVISION_FOLDER/util.sh"
 
 COOKIES_FILE="artifactory-cookies"
 BACKUP_FILE="$HOME/provision/artifactory/backup.zip"
