@@ -11,5 +11,6 @@ greenballs:1.15
 job-dsl:1.77
 ldap:1.22
 role-strategy:2.16
+startup-trigger-plugin:2.9.3
 trilead-api:1.0.6
 workflow-aggregator:2.6

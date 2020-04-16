@@ -48,10 +48,16 @@
       <excludeBranchesSpec></excludeBranchesSpec>
       <sourceBranchRegex></sourceBranchRegex>
       <targetBranchRegex></targetBranchRegex>
-      <secretToken>{AQAAABAAAAAQZExQ7e0rT/JfPkY+LHnqGXGdVcr/9lYKoCSTs1asZXk=}</secretToken>
+      <secretToken>{AQAAABAAAAAQAd3fF9/E4tGkRS4hOaxG7O0LY7YXf/Ika+Yl5lVWvKQ=}</secretToken>
       <pendingBuildName></pendingBuildName>
       <cancelPendingBuildsOnUpdate>false</cancelPendingBuildsOnUpdate>
     </com.dabsquared.gitlabjenkins.GitLabPushTrigger>
+    <org.jvnet.hudson.plugins.triggers.startup.HudsonStartupTrigger plugin="startup-trigger-plugin@2.9.3">
+      <spec></spec>
+      <label>master</label>
+      <quietPeriod>5</quietPeriod>
+      <runOnChoice>ON_ONLINE</runOnChoice>
+    </org.jvnet.hudson.plugins.triggers.startup.HudsonStartupTrigger>
   </triggers>
   <concurrentBuild>false</concurrentBuild>
   <builders>
