@@ -20,3 +20,9 @@ function parseTplTemplates() {
     tpl -t "${file}" > "${file%.tpl}" #&& rm "${file}"
   done
 }
+
+function prefixOutput() {
+    local prefix="$1"
+    shift
+    "$@" > >(sed "s/^/$prefix: /") 2> >(sed "s/^/$prefix (err): /" >&2)
+}

@@ -29,26 +29,26 @@ function provisionArtifactory(){
   cd $PROVISION_FOLDER/artifactory
   echo "********** PROVISIONING ARTIFACTORY **********"
   sudo chmod +x ./configure.sh
-  ./configure.sh &
+  prefixOutput "[provision-artifactory]" ./configure.sh &
 }
 
 function provisionJenkins(){
   cd $PROVISION_FOLDER/jenkins
   echo "********** PROVISIONING JENKINS **********"
   sudo chmod +x ./configure.sh
-  ./configure.sh &
+  prefixOutput "[provision-jenkins]" ./configure.sh &
 }
 
 function provisionGitlab(){
   cd $PROVISION_FOLDER/gitlab
   echo "********** PROVISIONING GITLAB **********"
   sudo chmod +x ./configure.sh
-  ./configure.sh &
+  prefixOutput "[provision-gitlab]" ./configure.sh &
 }
 
 function installDocker(){
   cd $PROVISION_FOLDER
-  ./install-docker.sh
+  prefixOutput "[install-docker]" ./install-docker.sh
 }
 
 echo "PROVISIONING HOST $HOST"
