@@ -17,7 +17,7 @@ function waitForReadiness() {
   echo -ne "Waiting for Gitlab to be ready"
   while :; do
     RESPONSE_CODE=$(curl -s -o /dev/null -w "%{http_code}" $PING_URL)
-    if [ $RESPONSE_CODE -eq 302 ] ; then
+    if [ $RESPONSE_CODE -eq 302 ] || [ $RESPONSE_CODE -eq 200 ]; then
       break
     fi
     echo -ne "."
