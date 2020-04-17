@@ -12,8 +12,8 @@ MASTER_FOLDER="./master"
 RUNNER_FOLDER="./runner"
 
 function waitForReadiness() {
-  PING_URL="$GITLAB_URL/users/sign_in" # TODO: Use actual /-/health endpoint, which currently doesn't work
-#  PING_URL="$GITLAB_URL/-/health"
+#  PING_URL="$GITLAB_URL/users/sign_in" # TODO: Use actual /-/health endpoint, which currently doesn't work
+  PING_URL="$GITLAB_URL/-/health"
   echo -ne "Waiting for Gitlab to be ready"
   while :; do
     RESPONSE_CODE=$(curl -s -o /dev/null -w "%{http_code}" $PING_URL)
@@ -36,6 +36,7 @@ function restore() {
   docker exec -t $MASTER_NAME gitlab-backup restore BACKUP=dump force=yes
   docker cp $MASTER_FOLDER/config/gitlab.rb $MASTER_ID:/etc/gitlab/gitlab.rb
   docker cp $MASTER_FOLDER/config/gitlab-secrets.json $MASTER_ID:/etc/gitlab/gitlab-secrets.json
+  docker exec -it $MASTER_NAME update-permissions
   echo "Restarting gitlab"
   docker restart $MASTER_NAME
 

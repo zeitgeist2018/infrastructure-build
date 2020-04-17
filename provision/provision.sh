@@ -63,7 +63,7 @@ provisionGitlab
 
 wait
 
-printf "${GREEN}The build platform is ready for you to use :)"
-printf "ARTIFACTORY URL: $ARTIFACTORY_URL"
-printf "JENKINS URL: $JENKINS_URL"
-printf "GITLAB URL: $GITLAB_URL${NC}"
+printf "\n\n\n${GREEN}The build platform is ready for you to use :)"
+printf "\nARTIFACTORY URL: $ARTIFACTORY_URL"
+printf "\nJENKINS URL: $JENKINS_URL"
+printf "\nGITLAB URL: $GITLAB_URL${NC}"
