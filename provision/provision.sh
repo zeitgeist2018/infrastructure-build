@@ -29,26 +29,26 @@ function provisionArtifactory(){
   cd $PROVISION_FOLDER/artifactory
   echo "********** PROVISIONING ARTIFACTORY **********"
   sudo chmod +x ./configure.sh
-  prefixOutput "[provision-artifactory]" ./configure.sh &
+  ./configure.sh
 }
 
 function provisionJenkins(){
   cd $PROVISION_FOLDER/jenkins
   echo "********** PROVISIONING JENKINS **********"
   sudo chmod +x ./configure.sh
-  prefixOutput "[provision-jenkins]" ./configure.sh &
+  ./configure.sh
 }
 
 function provisionGitlab(){
   cd $PROVISION_FOLDER/gitlab
   echo "********** PROVISIONING GITLAB **********"
   sudo chmod +x ./configure.sh
-  prefixOutput "[provision-gitlab]" ./configure.sh &
+  ./configure.sh
 }
 
 function installDocker(){
   cd $PROVISION_FOLDER
-  prefixOutput "[install-docker]" ./install-docker.sh
+  ./install-docker.sh
 }
 
 echo "PROVISIONING HOST $HOST"
@@ -63,7 +63,7 @@ provisionGitlab
 
 wait
 
-echo "${GREEN}The build platform is ready for you to use :)"
-echo "ARTIFACTORY URL: $ARTIFACTORY_URL"
-echo "JENKINS URL: $JENKINS_URL"
-echo "GITLAB URL: $GITLAB_URL${NC}"
+printf "${GREEN}The build platform is ready for you to use :)"
+printf "ARTIFACTORY URL: $ARTIFACTORY_URL"
+printf "JENKINS URL: $JENKINS_URL"
+printf "GITLAB URL: $GITLAB_URL${NC}"
