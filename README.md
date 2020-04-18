@@ -19,15 +19,15 @@ test and deploy your projects.
 * `Gitlab`: A place to store your projects locally
 * `Gradle plugins`: They provide your project with
  the foundation to integrate with the platform.
- 
-# Components not yet ready
-* `Keycloak/LDAP`: Centralized authentication component
-for the platform.
 * `DNS server/Reverse proxy`: Components to help you
 access the different components in the platform
 with a simple local domain.
+ 
+# Components not yet ready
 * `SSL`: To let you access the platform components
 in a more secure manner.
+* `Keycloak/LDAP`: Centralized authentication component
+for the platform.
 
 # Configure it
 The VM configuration is stored in the `config.json` file.
@@ -37,19 +37,26 @@ of RAM and 2 CPU's to start up flawlessly.
 # Run it
 Just execute `./redeploy.sh`, but watch out, this will 
 delete any previous state and data of your platform.
+For now, the only interaction needed from your side
+in the whole process is to type your superuser
+password at the beginning. This is needed in order
+to configure your host DNS settings automatically.
 
+
+# Use it
 Access the various components through their specific urls:
 * Jenkins: `http://jenkins.dev.local` or `http://192.168.1.100:8080`
 * Artifactory: `http://artifactory.dev.local` or `http://192.168.1.100:8081`
 * GitLab: `http://gitlab.dev.local` or `http://192.168.1.100:8082`
 
 
-# Artifactory
+### Artifactory
 Username: `admin`\
 Password: `passw0rd`
 
-#Jenkins
+###Jenkins
+No credentials for now
 
-#Gitlab
+###Gitlab
 Username: `root`\
 Password: `gitlabroot`

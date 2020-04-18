@@ -4,7 +4,7 @@
   <connections>
     <com.dabsquared.gitlabjenkins.connection.GitLabConnection>
       <name>gitlab</name>
-      <url>{{ .HOST }}:{{ .GITLAB_PORT }}</url>
+      <url>{{ .GITLAB_URL }}</url>
       <apiTokenId></apiTokenId>
       <clientBuilder class="com.dabsquared.gitlabjenkins.gitlab.api.impl.AutodetectGitLabClientBuilder">
         <id>autodetect</id>
