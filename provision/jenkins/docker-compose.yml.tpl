@@ -3,7 +3,7 @@ services:
   jenkins:
     container_name: jenkins-master
     image: jenkins-master
-    hostname: localhost
+    hostname: {{ .JENKINS_URL }}
     restart: unless-stopped
     build:
       context: ./master
