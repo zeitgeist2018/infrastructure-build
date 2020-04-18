@@ -7,5 +7,7 @@ services:
       - "80:80"
 #      - "443:443"
     volumes:
-    - "./conf:/etc/nginx:ro"
-#    - "./logs:/var/log/nginx:rw"
+      - "./conf/sites-available:/etc/nginx/sites-available"
+      - "./conf/sites-enabled:/etc/nginx/sites-enabled"
+      - "./conf/nginx.conf:/etc/nginx/nginx.conf"
+#      - "./logs:/var/log/nginx:rw"

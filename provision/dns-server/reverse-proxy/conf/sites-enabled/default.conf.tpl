@@ -3,7 +3,7 @@ server {
     server_name artifactory.dev.local;
       
     location / {
-        proxy_pass "http://localhost:{{ .ARTIFACTORY_PORT }}";
+        proxy_pass "http://{{ .HOST }}:{{ .ARTIFACTORY_PORT }}";
     }
 }
 
@@ -12,7 +12,7 @@ server {
     server_name jenkins.dev.local;
 
     location / {
-        proxy_pass "http://localhost:{{ .JENKINS_PORT }}";
+        proxy_pass "http://{{ .HOST }}:{{ .JENKINS_PORT }}";
     }
 }
 
@@ -21,7 +21,7 @@ server {
     server_name gitlab.dev.local;
 
     location / {
-        proxy_pass "http://localhost:{{ .GITLAB_PORT }}";
+        proxy_pass "http://{{ .HOST }}:{{ .GITLAB_PORT }}";
     }
 }
 

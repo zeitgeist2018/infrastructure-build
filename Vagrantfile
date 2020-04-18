@@ -10,6 +10,7 @@ Vagrant.configure(2) do |config|
 
     v.customize ["modifyvm", :id, "--memory", config_data["mem"]]
     v.customize ["modifyvm", :id, "--cpus", config_data["cpus"]]
+    # v.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
 
     override.vm.network :public_network, bridge: net_adapter, ip: "#{config_data["ip"]}"
     override.vm.hostname = config_data["hostname"]

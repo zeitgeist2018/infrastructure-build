@@ -11,16 +11,30 @@ function startReverseProxy() {
 }
 
 function startDnsServer() {
-  cd "$ROOT/reverse-proxy"
+  cd "$ROOT"
   docker-compose up -d
+}
+
+function restartDnsServer() {
+  cd "$ROOT"
+  docker-compose restart
 }
 
 function installDependencies(){
   sudo apt-get install jq resolvconf -y > /dev/null 2>&1
 }
 
+function disableDefaultDns(){
+  echo "Disabling default system DNS"
+  echo "DNSStubListener=no" | sudo tee -a /etc/systemd/resolved.conf
+  cat /etc/systemd/resolved.conf
+  sudo service systemd-resolved restart
+}
+
 installDependencies
 startReverseProxy
 startDnsServer
+disableDefaultDns
+restartDnsServer
 fetchDnsServerSettings vm
 configureDns

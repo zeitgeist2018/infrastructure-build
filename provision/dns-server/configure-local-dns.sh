@@ -8,14 +8,13 @@ function checkSystemctl() {
   systemctl status resolvconf.service || (echo "You need to install resolvconf before proceeding" && exit 1)
 }
 
-checkJq
-
 function fetchDnsServerSettings() {
   if [ "$1" == "vm" ]; then
     echo "Configuring DNS for VM"
-    export DNS_SERVER=0.0.0.0
+    export DNS_SERVER=127.0.0.1
   else
     echo "Configuring DNS for host"
+    checkJq
     export DNS_SERVER=$(cat config.json | jq -r .ip)
   fi
 
@@ -33,19 +32,14 @@ function setDnsServerMacos() {
 }
 
 function setDnsServerLinux() {
-  sudo systemctl status resolvconf.service >/dev/null 2>&1 ||
-    (
-      printf "${RED}You need to start resolvconf service${NC}"
-      exit 1
-    )
-
-  cat <EOF >>sudo /etc/resolvconf/resolv.conf.d/head
-  search $DOMAIN
-  nameserver $DNS_SERVER
-  nameserver $DEFAULT_DNS_1
-  nameserver $DEFAULT_DNS_2
-  EOF
-
+cat <<EOF > tmp
+search $DOMAIN
+nameserver $DNS_SERVER
+nameserver $DEFAULT_DNS_1
+nameserver $DEFAULT_DNS_2
+EOF
+#  sudo mv tmp /etc/resolvconf/resolv.conf.d/head
+  sudo mv tmp /etc/resolv.conf
   sudo systemctl start resolvconf.service
   echo "Final resolv.conf content"
   cat /etc/resolv.conf
