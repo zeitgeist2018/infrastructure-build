@@ -3,10 +3,10 @@ services:
   gitlab:
     image: gitlab/gitlab-ce:12.9.2-ce.0
     container_name: gitlab-master
-    hostname: localhost
+    hostname: {{ .GITLAB_URL }}
     restart: unless-stopped
     ports:
-      - "8082:80"
+      - "{{ .GITLAB_PORT }}:80"
 #    volumes:
 #      - ./data/gitlab/git-data:/var/opt/gitlab/git-data
 #      - ./config/gitlab:/etc/gitlab
