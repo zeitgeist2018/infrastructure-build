@@ -1,9 +1,27 @@
 server {
     listen 80;
-    server_name localhost;
+    server_name artifactory.dev.local;
       
     location / {
-        proxy_pass "http://192.168.1.100:8081";
+        proxy_pass "http://localhost:{{ .ARTIFACTORY_PORT }}";
+    }
+}
+
+server {
+    listen 80;
+    server_name jenkins.dev.local;
+
+    location / {
+        proxy_pass "http://localhost:{{ .JENKINS_PORT }}";
+    }
+}
+
+server {
+    listen 80;
+    server_name gitlab.dev.local;
+
+    location / {
+        proxy_pass "http://localhost:{{ .GITLAB_PORT }}";
     }
 }
 
