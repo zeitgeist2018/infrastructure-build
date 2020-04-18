@@ -39,9 +39,9 @@ Just execute `./redeploy.sh`, but watch out, this will
 delete any previous state and data of your platform.
 
 Access the various components through their specific urls:
-* Jenkins: `http://192.168.1.100:8080`
-* Artifactory: `http://192.168.1.100:8081`
-* GitLab: `http://192.168.1.100:8082`
+* Jenkins: `http://jenkins.dev.local` or `http://192.168.1.100:8080`
+* Artifactory: `http://artifactory.dev.local` or `http://192.168.1.100:8081`
+* GitLab: `http://gitlab.dev.local` or `http://192.168.1.100:8082`
 
 
 # Artifactory
