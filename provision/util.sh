@@ -17,7 +17,7 @@ function installTpl() {
 function parseTplTemplates() {
   find "$1" -type f -name "*.tpl" | while read file; do
     echo "Parsing template ${file%.tpl}"
-    tpl -t "${file}" > "${file%.tpl}" #&& rm "${file}"
+    tpl -t "${file}" > "${file%.tpl}" && rm "${file}"
   done
 }
 
