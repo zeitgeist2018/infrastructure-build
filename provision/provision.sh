@@ -46,6 +46,13 @@ function provisionGitlab(){
   ./configure.sh
 }
 
+function provisionDnsServer(){
+  cd $PROVISION_FOLDER/dns-server
+  echo "********** PROVISIONING DNS SERVER **********"
+  sudo chmod +x ./configure.sh
+  ./configure.sh
+}
+
 function installDocker(){
   cd $PROVISION_FOLDER
   ./install-docker.sh
@@ -57,6 +64,8 @@ createDataFolders
 installTpl
 parseTplTemplates $PROVISION_FOLDER
 installDocker
+
+provisionDnsServer
 provisionArtifactory
 provisionJenkins
 provisionGitlab
