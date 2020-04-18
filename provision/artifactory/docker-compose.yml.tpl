@@ -20,6 +20,7 @@ services:
   artifactory:
     image: docker.bintray.io/jfrog/artifactory-oss:6.18.1
     container_name: artifactory
+    hostname: {{ .ARTIFACTORY_URL }}
     ports:
       - {{ .ARTIFACTORY_PORT }}:8081
     depends_on:
