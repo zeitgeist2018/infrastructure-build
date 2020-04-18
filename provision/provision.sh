@@ -66,9 +66,9 @@ parseTplTemplates $PROVISION_FOLDER
 installDocker
 
 provisionDnsServer
-provisionArtifactory
+#provisionArtifactory
 provisionJenkins
-provisionGitlab
+#provisionGitlab
 
 wait
 
