@@ -1693,7 +1693,7 @@ gitlab_rails['monitoring_whitelist'] = ['127.0.0.0/8', '0.0.0.0/0']
 ##! Docs: https://docs.gitlab.com/ee/administration/monitoring/prometheus/#prometheus-as-a-grafana-data-source
 ################################################################################
 
-# grafana['enable'] = true
+grafana['enable'] = true
 # grafana['log_directory'] = '/var/log/gitlab/grafana'
 # grafana['home'] = '/var/opt/gitlab/grafana'
 # grafana['admin_password'] = 'admin'
