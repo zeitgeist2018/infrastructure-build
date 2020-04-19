@@ -14,13 +14,17 @@ export GITLAB_PORT="8082"
 #export ARTIFACTORY_URL="http://$HOST:$ARTIFACTORY_PORT"
 #export GITLAB_URL="http://$HOST:$GITLAB_PORT"
 export JENKINS_URL="https://jenkins.dev.local"
-export ARTIFACTORY_URL="http://artifactory.dev.local"
+export ARTIFACTORY_URL="https://artifactory.dev.local"
 export GITLAB_URL="http://gitlab.dev.local"
 
 cd "$PROVISION_FOLDER"
 source ./util.sh
 
-
+function allowInsecureCurl(){
+cat <<EOF > $HOME/.curlrc
+insecure
+EOF
+}
 function createDataFolders(){
   cd $HOME
   mkdir -p data/artifactory
@@ -66,10 +70,11 @@ echo "PROVISIONING HOST $HOST"
 createDataFolders
 installTpl
 parseTplTemplates $PROVISION_FOLDER
+allowInsecureCurl
 installDocker
 
 provisionDnsServer
-#provisionArtifactory
+provisionArtifactory
 provisionJenkins
 #provisionGitlab
 
