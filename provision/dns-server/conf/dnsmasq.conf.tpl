@@ -5,9 +5,7 @@ log-queries
 no-resolv
 
 #explicitly define host-ip mappings
-address=/artifactory.dev.local/{{ .HOST }}
-address=/jenkins.dev.local/{{ .HOST }}
-address=/gitlab.dev.local/{{ .HOST }}
+address=/.dev.local/{{ .HOST }}
 
 #use google as default nameservers
 server=8.8.4.4

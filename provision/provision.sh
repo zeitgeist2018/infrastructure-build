@@ -13,7 +13,7 @@ export GITLAB_PORT="8082"
 #export JENKINS_URL="http://$HOST:$JENKINS_PORT"
 #export ARTIFACTORY_URL="http://$HOST:$ARTIFACTORY_PORT"
 #export GITLAB_URL="http://$HOST:$GITLAB_PORT"
-export JENKINS_URL="http://jenkins.dev.local"
+export JENKINS_URL="https://jenkins.dev.local"
 export ARTIFACTORY_URL="http://artifactory.dev.local"
 export GITLAB_URL="http://gitlab.dev.local"
 
@@ -69,9 +69,9 @@ parseTplTemplates $PROVISION_FOLDER
 installDocker
 
 provisionDnsServer
-provisionArtifactory
+#provisionArtifactory
 provisionJenkins
-provisionGitlab
+#provisionGitlab
 
 printf "\n\n\n${GREEN}The build platform is ready for you to use :)"
 printf "\nARTIFACTORY URL: $ARTIFACTORY_URL"
