@@ -3,24 +3,6 @@ server {
     server_name artifactory.dev.local;
 
     location / {
-        return 301 https://$host$request_uri;
-    }
-}
-
-server {
-    listen 443 ssl http2;
-
-    ssl_certificate             /etc/nginx/ssl/dev.local.crt;
-    ssl_certificate_key         /etc/nginx/ssl/dev.local.private.key;
-    ssl_session_cache           builtin:1000  shared:SSL:10m;
-    ssl_protocols               TLSv1 TLSv1.1 TLSv1.2;
-    ssl_ciphers                 HIGH:!aNULL:!eNULL:!EXPORT:!CAMELLIA:!DES:!MD5:!PSK:!RC4;
-    ssl_prefer_server_ciphers   on;
-
-    access_log                  /var/log/nginx/artifactory.access.log;
-    server_name                 artifactory.dev.local;
-
-    location / {
         proxy_pass              http://{{ .HOST }}:{{ .ARTIFACTORY_PORT }};
         proxy_set_header        Host $host:$server_port;
         proxy_set_header        X-Real-IP $remote_addr;
@@ -31,4 +13,3 @@ server {
         proxy_redirect          http://{{ .HOST }}:{{ .ARTIFACTORY_PORT }} {{ .ARTIFACTORY_URL }};
     }
 }
-
