@@ -6,7 +6,7 @@ services:
     hostname: {{ .GITLAB_URL }}
     restart: unless-stopped
     ports:
-      - "{{ .GITLAB_PORT }}:80"
+      - "{{ .GITLAB_PORT }}:80"    # TODO: Expose only to 127.0.0.1
 #    volumes:
 #      - ./data/gitlab/git-data:/var/opt/gitlab/git-data
 #      - ./config/gitlab:/etc/gitlab

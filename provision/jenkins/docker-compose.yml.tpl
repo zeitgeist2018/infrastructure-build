@@ -8,8 +8,9 @@ services:
     build:
       context: ./master
     ports:
-      - "{{ .JENKINS_PORT }}:8080"
+      - "{{ .JENKINS_PORT }}:8080"    # TODO: Expose only to 127.0.0.1
     networks:
       - net
+  # TODO: Add Jenkins agents
 networks:
   net:

@@ -4,7 +4,7 @@ services:
     image: postgres:9.6.17
     container_name: artifactory-postgresql
     ports:
-      - 5432:5432
+      - 5432:5432    # TODO: Expose only to 127.0.0.1
     environment:
       - POSTGRES_DB=artifactory
       - POSTGRES_USER=artifactory
@@ -22,7 +22,7 @@ services:
     container_name: artifactory
     hostname: {{ .ARTIFACTORY_URL }}
     ports:
-      - {{ .ARTIFACTORY_PORT }}:8081
+      - {{ .ARTIFACTORY_PORT }}:8081    # TODO: Expose only to 127.0.0.1
     depends_on:
       - postgresql
     links:
