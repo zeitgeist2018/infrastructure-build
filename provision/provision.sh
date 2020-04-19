@@ -69,11 +69,9 @@ parseTplTemplates $PROVISION_FOLDER
 installDocker
 
 provisionDnsServer
-#provisionArtifactory
+provisionArtifactory
 provisionJenkins
-#provisionGitlab
-
-wait
+provisionGitlab
 
 printf "\n\n\n${GREEN}The build platform is ready for you to use :)"
 printf "\nARTIFACTORY URL: $ARTIFACTORY_URL"
