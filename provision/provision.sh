@@ -76,7 +76,7 @@ installDocker
 provisionDnsServer
 provisionArtifactory
 provisionJenkins
-#provisionGitlab
+provisionGitlab
 
 printf "\n\n\n${GREEN}The build platform is ready for you to use :)"
 printf "\nARTIFACTORY URL: $ARTIFACTORY_URL"
