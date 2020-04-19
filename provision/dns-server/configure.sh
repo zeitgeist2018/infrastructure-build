@@ -2,6 +2,7 @@
 
 ROOT=$(pwd)
 source ./configure-local-dns.sh
+source ./ssl.sh
 
 function startReverseProxy() {
   echo "Starting reverse proxy"
@@ -27,11 +28,11 @@ function installDependencies(){
 function disableDefaultDns(){
   echo "Disabling default system DNS"
   echo "DNSStubListener=no" | sudo tee -a /etc/systemd/resolved.conf
-  cat /etc/systemd/resolved.conf
   sudo service systemd-resolved restart
 }
 
 installDependencies
+generateCertificates
 startReverseProxy
 startDnsServer
 disableDefaultDns

@@ -41,8 +41,6 @@ EOF
 #  sudo mv tmp /etc/resolvconf/resolv.conf.d/head
   sudo mv tmp /etc/resolv.conf
   sudo systemctl start resolvconf.service
-  echo "Final resolv.conf content"
-  cat /etc/resolv.conf
 }
 
 function configureDns() {
