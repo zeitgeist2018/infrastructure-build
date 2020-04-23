@@ -9,12 +9,12 @@ export DATA_FOLDER="$HOME/data"
 
 export JENKINS_PORT="8080"
 export ARTIFACTORY_PORT="8081"
-export GITLAB_PORT="8082"
-#export JENKINS_URL="http://$HOST:$JENKINS_PORT"
-#export ARTIFACTORY_URL="http://$HOST:$ARTIFACTORY_PORT"
-#export GITLAB_URL="http://$HOST:$GITLAB_PORT"
+export ARTIFACTORY_JCR_PORT="8082"
+export GITLAB_PORT="8083"
+
 export JENKINS_URL="https://jenkins.dev.local"
 export ARTIFACTORY_URL="http://artifactory.dev.local"
+export ARTIFACTORY_JCR_URL="http://artifactory-jcr.dev.local"
 export GITLAB_URL="http://gitlab.dev.local"
 
 cd "$PROVISION_FOLDER"
@@ -35,6 +35,20 @@ function createDataFolders(){
 function provisionArtifactory(){
   cd $PROVISION_FOLDER/artifactory
   echo "********** PROVISIONING ARTIFACTORY **********"
+  sudo chmod +x ./configure.sh
+  ./configure.sh
+}
+
+function provisionArtifactoryJCR(){
+  cd $PROVISION_FOLDER/artifactory-jcr
+  echo "********** PROVISIONING ARTIFACTORY JCR **********"
+  sudo chmod +x ./configure.sh
+  ./configure.sh
+}
+
+function provisionContainerRegistry(){
+  cd $PROVISION_FOLDER/artifactory-jcr
+  echo "********** PROVISIONING ARTIFACTORY CONTAINER REGISTRY **********"
   sudo chmod +x ./configure.sh
   ./configure.sh
 }
@@ -61,7 +75,7 @@ function provisionDnsServer(){
 }
 
 function installDocker(){
-  cd $PROVISION_FOLDER
+  cd "$PROVISION_FOLDER/docker"
   ./install-docker.sh
 }
 
@@ -74,9 +88,10 @@ allowInsecureCurl
 installDocker
 
 provisionDnsServer
-provisionArtifactory
-provisionJenkins
-provisionGitlab
+#provisionArtifactory
+provisionArtifactoryJCR
+#provisionJenkins
+#provisionGitlab
 
 printf "\n\n\n${GREEN}The build platform is ready for you to use :)"
 printf "\nARTIFACTORY URL: $ARTIFACTORY_URL"

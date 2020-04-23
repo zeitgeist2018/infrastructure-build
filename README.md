@@ -47,7 +47,8 @@ to configure your host DNS settings automatically.
 Access the various components through their specific urls:
 * Jenkins: `https://jenkins.dev.local` or `http://192.168.1.100:8080`
 * Artifactory: `http://artifactory.dev.local` or `http://192.168.1.100:8081`
-* GitLab: `http://gitlab.dev.local` or `http://192.168.1.100:8082`
+* Artifactory JCR: `http://artifactory-jcr.dev.local` or `http://192.168.1.100:8082`
+* GitLab: `http://gitlab.dev.local` or `http://192.168.1.100:8083`
 
 
 ### Artifactory
