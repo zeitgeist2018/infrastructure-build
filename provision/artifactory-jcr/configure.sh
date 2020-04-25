@@ -10,7 +10,7 @@ DEFAULT_PWD="password"
 
 function waitForReadiness() {
   PING_URL="$ARTIFACTORY_JCR_URL/artifactory/api/system/ping"
-  echo -ne "Waiting for artifactory to be ready"
+  echo -ne "Waiting for Artifactory JCR to be ready"
   while :; do
     RESPONSE_CODE=$(curl -s -o /dev/null -w "%{http_code}" $PING_URL)
     if [ $RESPONSE_CODE -eq 200 ] || [ $RESPONSE_CODE -eq 401 ]; then

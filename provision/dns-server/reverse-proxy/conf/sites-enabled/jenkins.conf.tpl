@@ -10,8 +10,8 @@ server {
 server {
     listen 443 ssl http2;
 
-    ssl_certificate             /etc/nginx/ssl/dev.local.crt;
-    ssl_certificate_key         /etc/nginx/ssl/dev.local.private.key;
+    ssl_certificate             /etc/nginx/ssl/servercert.pem;
+    ssl_certificate_key         /etc/nginx/ssl/serverkey.pem;
     ssl_session_cache           builtin:1000  shared:SSL:10m;
     ssl_protocols               TLSv1 TLSv1.1 TLSv1.2;
     ssl_ciphers                 HIGH:!aNULL:!eNULL:!EXPORT:!CAMELLIA:!DES:!MD5:!PSK:!RC4;

@@ -14,13 +14,19 @@ function redeployVM() {
 }
 
 function installCertificatesLinux() {
-  sudo cp ./data/ssl/*.crt /usr/local/share/ca-certificates/
+  sudo cp ./data/ssl/cacert.pem /usr/local/share/ca-certificates/
   sudo update-ca-certificates
+  sudo cp ./data/ssl/cacert.pem \
+    /etc/docker/certs.d/artifactory-jcr.dev.local/cacert.pem
 }
 
 function installCertificatesMacos() {
   sudo security add-trusted-cert -p ssl -d -r trustRoot \
-      -k ~/Library/Keychains/login.keychain ./data/ssl/dev.local.crt
+      -k ~/Library/Keychains/login.keychain ./data/ssl/cacert.pem
+  sudo cp ./data/ssl/cacert.pem \
+  /Applications/Docker.app/Contents/Resources/etc/ssl/certs/ca-certificates.pem
+  echo "YOU NEED TO RESTART DOCKER DESKTOP SO IT PICKS UP THE NEW CERTIFICATE INSTALLED"
+
 }
 
 function copyCertificatesFromVM(){

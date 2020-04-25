@@ -14,6 +14,8 @@ to work with this platform will be provided.
 # Components ready
 * `JFrog Artifactory`: A place to store and manage the
 binaries/artifacts you generate from your projects.
+* `JFrog Artifactory JCR`: A place to store and manage the
+docker images you generate from your projects.
 * `Jenkins`: Most popular CI/CD tool, to help you build, 
 test and deploy your projects.
 * `Gitlab`: A place to store your projects locally
@@ -47,7 +49,7 @@ to configure your host DNS settings automatically.
 Access the various components through their specific urls:
 * Jenkins: `https://jenkins.dev.local` or `http://192.168.1.100:8080`
 * Artifactory: `http://artifactory.dev.local` or `http://192.168.1.100:8081`
-* Artifactory JCR: `http://artifactory-jcr.dev.local` or `http://192.168.1.100:8082`
+* Artifactory JCR: `https://artifactory-jcr.dev.local` or `http://192.168.1.100:8082`
 * GitLab: `http://gitlab.dev.local` or `http://192.168.1.100:8083`
 
 

@@ -14,7 +14,7 @@ export GITLAB_PORT="8083"
 
 export JENKINS_URL="https://jenkins.dev.local"
 export ARTIFACTORY_URL="http://artifactory.dev.local"
-export ARTIFACTORY_JCR_URL="http://artifactory-jcr.dev.local"
+export ARTIFACTORY_JCR_URL="https://artifactory-jcr.dev.local"
 export GITLAB_URL="http://gitlab.dev.local"
 
 cd "$PROVISION_FOLDER"
@@ -95,5 +95,6 @@ provisionArtifactoryJCR
 
 printf "\n\n\n${GREEN}The build platform is ready for you to use :)"
 printf "\nARTIFACTORY URL: $ARTIFACTORY_URL"
+printf "\nARTIFACTORY JCR URL: $ARTIFACTORY_JCR_URL"
 printf "\nJENKINS URL: $JENKINS_URL"
 printf "\nGITLAB URL: $GITLAB_URL${NC}"
