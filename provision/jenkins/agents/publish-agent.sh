@@ -5,6 +5,8 @@ if [[ $# -eq 0 ]] ; then
     exit 1
 fi
 
+USER="admin"
+PWD="passw0rd"
 DOMAIN="artifactory-jcr.dev.local"
 REPO="$DOMAIN/docker-local"
 PREFIX="jenkins-agent"
@@ -13,6 +15,6 @@ VERSION=${2:-latest}
 TAG="$REPO/$PREFIX-$AGENT:$VERSION"
 
 docker build -t "$TAG" "$AGENT"
-#docker login -u cristianlm -p cristianlm $DOMAIN
+docker login -u $USER -p $PWD $DOMAIN
 docker push "$TAG"
 docker rmi "$TAG"
