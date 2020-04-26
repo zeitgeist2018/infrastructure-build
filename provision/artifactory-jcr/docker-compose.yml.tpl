@@ -9,8 +9,8 @@ services:
       - POSTGRES_DB=artifactory
       - POSTGRES_USER=artifactory
       - POSTGRES_PASSWORD=password
-#    volumes:
-#      - /home/vagrant/data/postgresql:/var/lib/postgresql/data
+    #volumes:
+    #  - {{ .DATA_FOLDER }}/artifactory-jcr/postgresql:/var/lib/postgresql/data
     restart: unless-stopped
     ulimits:
       nproc: 65535
@@ -27,8 +27,8 @@ services:
       - postgresql
     links:
       - postgresql
-#    volumes:
-#      - /home/vagrant/data/artifactory:/var/opt/jfrog/artifactory
+    volumes:
+      - {{ .DATA_FOLDER }}/artifactory-jcr/backups:/home/backups
     environment:
       - DB_TYPE=postgresql
       - DB_USER=artifactory

@@ -17,7 +17,7 @@ Vagrant.configure(2) do |config|
 
     # Uncomment this if you want storage outside the VM.
     # WARNING: Feature not yet supported, as it makes Artifactory startup fail
-    # config.vm.synced_folder "./data", vm_data_folder
+    config.vm.synced_folder "./data", vm_data_folder, mount_options: ["dmode=777,fmode=777"]
   end
 
   config.vm.provision "file", source: "./provision", destination: '/home/vagrant/provision'

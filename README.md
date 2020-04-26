@@ -26,8 +26,6 @@ access the different components in the platform
 with a simple local domain.
  
 # Components not yet ready
-* `SSL`: To let you access the platform components
-in a more secure manner.
 * `Keycloak/LDAP`: Centralized authentication component
 for the platform.
 
@@ -39,18 +37,17 @@ of RAM and 2 CPU's to start up flawlessly.
 # Run it
 Just execute `./redeploy.sh`, but watch out, this will 
 delete any previous state and data of your platform.
-For now, the only interaction needed from your side
-in the whole process is to type your superuser
-password at the beginning. This is needed in order
-to configure your host DNS settings automatically.
+The script needs a couple of interactions from your side,
+for typing your superuser password, and restarting Docker
+service in the host at the end. 
 
 
 # Use it
 Access the various components through their specific urls:
-* Jenkins: `https://jenkins.dev.local` or `http://192.168.1.100:8080`
-* Artifactory: `http://artifactory.dev.local` or `http://192.168.1.100:8081`
-* Artifactory JCR: `https://artifactory-jcr.dev.local` or `http://192.168.1.100:8082`
-* GitLab: `http://gitlab.dev.local` or `http://192.168.1.100:8083`
+* Jenkins: `https://jenkins.dev.local`
+* Artifactory: `http://artifactory.dev.local`
+* Artifactory JCR: `https://artifactory-jcr.dev.local`
+* GitLab: `http://gitlab.dev.local`
 
 
 ### Artifactory

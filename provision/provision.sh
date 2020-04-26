@@ -4,6 +4,11 @@ set -e
 
 export HOST="$1"
 export HOME="/home/vagrant"
+
+function exportEnvironment(){
+cat <<EOF > /home/vagrant/.bash_profile
+export HOST="$HOST"
+export HOME="/home/vagrant"
 export PROVISION_FOLDER="$HOME/provision"
 export DATA_FOLDER="$HOME/data"
 
@@ -16,20 +21,20 @@ export JENKINS_URL="https://jenkins.dev.local"
 export ARTIFACTORY_URL="http://artifactory.dev.local"
 export ARTIFACTORY_JCR_URL="https://artifactory-jcr.dev.local"
 export GITLAB_URL="http://gitlab.dev.local"
-
-cd "$PROVISION_FOLDER"
-source ./util.sh
+EOF
+}
 
 function allowInsecureCurl(){
 cat <<EOF > $HOME/.curlrc
 insecure
 EOF
 }
+
 function createDataFolders(){
-  cd $HOME
-  mkdir -p data/artifactory
-  mkdir -p data/artifactory-postgresql
-  sudo chmod 777 data/*
+#  mkdir -p $DATA_FOLDER/artifactory
+#  mkdir -p $DATA_FOLDER/artifactory-jcr/postgresql
+  mkdir -p $DATA_FOLDER/artifactory-jcr/backups
+  sudo chmod 777 -R $DATA_FOLDER/*
 }
 
 function provisionArtifactory(){
@@ -80,6 +85,12 @@ function installDocker(){
 }
 
 echo "PROVISIONING HOST $HOST"
+
+exportEnvironment
+
+source ~/.bash_profile
+cd "$PROVISION_FOLDER"
+source ./util.sh
 
 createDataFolders
 installTpl
