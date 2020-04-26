@@ -12,4 +12,4 @@ services:
       - "./conf/sites-enabled:/etc/nginx/sites-enabled"
       - "./conf/nginx.conf:/etc/nginx/nginx.conf"
       - "./ssl:/etc/nginx/ssl:ro"
-#      - "./logs:/var/log/nginx:rw"
+      - "{{ .DATA_FOLDER }}/dns-server/reverse-proxy/logs:/var/log/nginx:rw"
