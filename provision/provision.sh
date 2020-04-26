@@ -18,16 +18,16 @@ export ARTIFACTORY_PORT="8081"
 export ARTIFACTORY_JCR_PORT="8082"
 export GITLAB_PORT="8083"
 
-export BASE_DOMAIN=dev.local
-export JENKINS_DOMAIN="jenkins.$BASE_DOMAIN"
-export ARTIFACTORY_DOMAIN="artifactory.$BASE_DOMAIN"
-export ARTIFACTORY_JCR_DOMAIN="artifactory-jcr.$BASE_DOMAIN"
-export GITLAB_DOMAIN="gitlab.$BASE_DOMAIN"
+export BASE_DOMAIN="dev.local"
+export JENKINS_DOMAIN="jenkins.\$BASE_DOMAIN"
+export ARTIFACTORY_DOMAIN="artifactory.\$BASE_DOMAIN"
+export ARTIFACTORY_JCR_DOMAIN="artifactory-jcr.\$BASE_DOMAIN"
+export GITLAB_DOMAIN="gitlab.\$BASE_DOMAIN"
 
-export JENKINS_URL="https://$JENKINS_DOMAIN"
-export ARTIFACTORY_URL="http://$ARTIFACTORY_DOMAIN"
-export ARTIFACTORY_JCR_URL="https://$ARTIFACTORY_JCR_DOMAIN"
-export GITLAB_URL="http://$GITLAB_DOMAIN"
+export JENKINS_URL="https://\$JENKINS_DOMAIN"
+export ARTIFACTORY_URL="http://\$ARTIFACTORY_DOMAIN"
+export ARTIFACTORY_JCR_URL="https://\$ARTIFACTORY_JCR_DOMAIN"
+export GITLAB_URL="http://\$GITLAB_DOMAIN"
 EOF
 }
 
@@ -40,6 +40,7 @@ EOF
 function createDataFolders(){
   mkdir -p "$DATA_FOLDER"/artifactory-jcr/backups
   mkdir -p "$DATA_FOLDER"/jenkins/master
+  mkdir -p "$DATA_FOLDER"/dns-server/reverse-proxy/logs
   sudo chmod 777 -R $DATA_FOLDER/*
 }
 
@@ -108,8 +109,8 @@ installDocker
 provisionDnsServer
 #provisionArtifactory
 provisionArtifactoryJCR
-provisionJenkins
 #provisionGitlab
+provisionJenkins
 
 printf "\n\n\n${GREEN}The build platform is ready for you to use :)"
 printf "\nARTIFACTORY URL: $ARTIFACTORY_URL"
