@@ -7,4 +7,5 @@ function publishAgentImages(){
 }
 
 docker-compose up -d
+publishAgentImages
 
