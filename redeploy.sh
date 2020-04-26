@@ -18,6 +18,7 @@ function installCertificatesLinux() {
   sudo update-ca-certificates
   sudo cp ./data/ssl/cacert.pem \
     /etc/docker/certs.d/artifactory-jcr.dev.local/cacert.pem
+  sudo service docker restart
 }
 
 function installCertificatesMacos() {

@@ -7,7 +7,7 @@ fi
 
 USER="admin"
 PWD="passw0rd"
-DOMAIN="artifactory-jcr.dev.local"
+DOMAIN=${ARTIFACTORY_JCR_DOMAIN:-artifactory-jcr.dev.local}
 REPO="$DOMAIN/docker-local"
 PREFIX="jenkins-agent"
 AGENT=$1

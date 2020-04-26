@@ -31,6 +31,11 @@ function disableDefaultDns(){
   sudo service systemd-resolved restart
 }
 
+function addCertificatesToDocker(){
+  cd "$ROOT/reverse-proxy/ssl"
+  sudo cp cacert.pem /etc/docker/certs.d/"$ARTIFACTORY_JCR_DOMAIN"/cacert.pem
+  sudo service docker restart
+}
 installDependencies
 generateCertificates
 startReverseProxy
@@ -39,3 +44,4 @@ disableDefaultDns
 restartDnsServer
 fetchDnsServerSettings vm
 configureDns
+addCertificatesToDocker

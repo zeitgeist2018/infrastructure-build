@@ -9,8 +9,9 @@ services:
       context: ./master
     ports:
       - "{{ .JENKINS_PORT }}:8080"    # TODO: Expose only to 127.0.0.1
+    volumes:
+      - {{ .DATA_FOLDER }}/jenkins/master:/var/jenkins_home
     networks:
       - net
-  # TODO: Add Jenkins agents
 networks:
   net:

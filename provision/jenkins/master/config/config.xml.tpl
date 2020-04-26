@@ -15,7 +15,71 @@
   <jdks/>
   <viewsTabBar class="hudson.views.DefaultViewsTabBar"/>
   <myViewsTabBar class="hudson.views.DefaultMyViewsTabBar"/>
-  <clouds/>
+  <clouds>
+    <com.nirima.jenkins.plugins.docker.DockerCloud plugin="docker-plugin@1.2.0">
+      <name>docker</name>
+      <templates>
+        <com.nirima.jenkins.plugins.docker.DockerTemplate>
+          <configVersion>2</configVersion>
+          <labelString>java8</labelString>
+          <connector class="io.jenkins.docker.connector.DockerComputerSSHConnector">
+            <sshKeyStrategy class="io.jenkins.docker.connector.DockerComputerSSHConnector$InjectSSHKey">
+              <user>jenkins</user>
+            </sshKeyStrategy>
+            <port>22</port>
+            <jvmOptions></jvmOptions>
+            <javaPath></javaPath>
+            <prefixStartSlaveCmd></prefixStartSlaveCmd>
+            <suffixStartSlaveCmd></suffixStartSlaveCmd>
+          </connector>
+          <remoteFs>/home/jenkins</remoteFs>
+          <instanceCap>5</instanceCap>
+          <mode>NORMAL</mode>
+          <retentionStrategy class="com.nirima.jenkins.plugins.docker.strategy.DockerOnceRetentionStrategy">
+            <idleMinutes>2</idleMinutes>
+          </retentionStrategy>
+          <dockerTemplateBase>
+            <image>{{ .ARTIFACTORY_JCR_DOMAIN }}/docker-local/jenkins-agent-java</image>
+            <pullCredentialsId></pullCredentialsId>
+            <dockerCommand></dockerCommand>
+            <hostname></hostname>
+            <user></user>
+            <extraGroups class="empty-list"/>
+            <dnsHosts/>
+            <network></network>
+            <volumes/>
+            <volumesFrom2/>
+            <devices/>
+            <environment/>
+            <bindPorts></bindPorts>
+            <bindAllPorts>false</bindAllPorts>
+            <privileged>false</privileged>
+            <tty>false</tty>
+            <extraHosts class="empty-list"/>
+          </dockerTemplateBase>
+          <removeVolumes>false</removeVolumes>
+          <pullStrategy>PULL_ALWAYS</pullStrategy>
+          <pullTimeout>300</pullTimeout>
+          <nodeProperties class="empty-list"/>
+          <disabled>
+            <disabledByChoice>false</disabledByChoice>
+          </disabled>
+        </com.nirima.jenkins.plugins.docker.DockerTemplate>
+      </templates>
+      <dockerApi>
+        <dockerHost plugin="docker-commons@1.16">
+          <uri>tcp://{{ .HOST }}:{{ .DOCKER_API_PORT }}</uri>
+        </dockerHost>
+        <connectTimeout>60</connectTimeout>
+        <readTimeout>60</readTimeout>
+      </dockerApi>
+      <containerCap>5</containerCap>
+      <exposeDockerHost>false</exposeDockerHost>
+      <disabled>
+        <disabledByChoice>false</disabledByChoice>
+      </disabled>
+    </com.nirima.jenkins.plugins.docker.DockerCloud>
+  </clouds>
   <quietPeriod>0</quietPeriod>
   <scmCheckoutRetryCount>0</scmCheckoutRetryCount>
   <views>

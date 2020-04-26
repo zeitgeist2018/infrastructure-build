@@ -1,6 +1,6 @@
 server {
     listen 80;
-    server_name artifactory-jcr.dev.local;
+    server_name {{ .ARTIFACTORY_JCR_DOMAIN }};
 
     location / {
         return 301 https://$host$request_uri;
@@ -18,7 +18,7 @@ server {
     ssl_prefer_server_ciphers   on;
 
     access_log                  /var/log/nginx/artifactory-jcr.access.log;
-    server_name                 artifactory-jcr.dev.local;
+    server_name                 {{ .ARTIFACTORY_JCR_DOMAIN }};
 
     location / {
         proxy_pass              http://{{ .HOST }}:{{ .ARTIFACTORY_JCR_PORT }};
