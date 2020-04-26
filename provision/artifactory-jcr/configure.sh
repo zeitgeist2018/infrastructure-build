@@ -16,7 +16,7 @@ function waitForReadiness() {
     if [ $RESPONSE_CODE -eq 200 ] || [ $RESPONSE_CODE -eq 401 ]; then
       break
     fi
-    echo -ne "."
+    echo "Artifactory JCR ping response: $RESPONSE_CODE"
     sleep 2
   done
   printf "\n${GREEN}Artifactory ready${NC}"
