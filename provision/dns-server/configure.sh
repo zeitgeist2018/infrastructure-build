@@ -33,6 +33,7 @@ function disableDefaultDns(){
 
 function addCertificatesToDocker(){
   cd "$ROOT/reverse-proxy/ssl"
+  sudo mkdir -p /etc/docker/certs.d/"$ARTIFACTORY_JCR_DOMAIN"
   sudo cp cacert.pem /etc/docker/certs.d/"$ARTIFACTORY_JCR_DOMAIN"/cacert.pem
   sudo service docker restart
 }

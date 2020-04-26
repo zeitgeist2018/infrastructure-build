@@ -18,7 +18,7 @@ export ARTIFACTORY_PORT="8081"
 export ARTIFACTORY_JCR_PORT="8082"
 export GITLAB_PORT="8083"
 
-export BASE_DOMAIN="dev.local
+export BASE_DOMAIN=dev.local
 export JENKINS_DOMAIN="jenkins.$BASE_DOMAIN"
 export ARTIFACTORY_DOMAIN="artifactory.$BASE_DOMAIN"
 export ARTIFACTORY_JCR_DOMAIN="artifactory-jcr.$BASE_DOMAIN"
@@ -95,6 +95,7 @@ echo "PROVISIONING HOST $HOST"
 exportEnvironment
 
 source $HOME/.bash_profile
+
 cd "$PROVISION_FOLDER"
 source ./util.sh
 
