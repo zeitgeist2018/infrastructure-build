@@ -1,11 +1,13 @@
 #!/bin/bash
 
+set -e
+
 function checkJq() {
-  jq --version >/dev/null 2>&1 || (echo "You need to install jq before proceeding" && exit 1)
+  jq --version >/dev/null 2>&1 || (echo "YOU NEED TO INSTALL JQ BEFORE PROCEEDING" && exit 1)
 }
 
 function checkSystemctl() {
-  systemctl status resolvconf.service || (echo "You need to install resolvconf before proceeding" && exit 1)
+  systemctl status resolvconf.service || (echo "YOU NEED TO INSTALL RESOLVCONF BEFORE PROCEEDING" && exit 1)
 }
 
 function fetchDnsServerSettings() {
@@ -32,15 +34,15 @@ function setDnsServerMacos() {
 }
 
 function setDnsServerLinux() {
+  sudo systemctl status resolvconf.service || (echo "YOU NEED TO INSTALL RESOLVCONF BEFORE PROCEEDING" && exit 1)
 cat <<EOF > tmp
 search $DOMAIN
 nameserver $DNS_SERVER
 nameserver $DEFAULT_DNS_1
 nameserver $DEFAULT_DNS_2
 EOF
-#  sudo mv tmp /etc/resolvconf/resolv.conf.d/head
-  sudo mv tmp /etc/resolv.conf
-  sudo systemctl start resolvconf.service
+  sudo mv tmp /etc/resolvconf/resolv.conf.d/head
+  sudo systemctl restart resolvconf.service
 }
 
 function configureDns() {

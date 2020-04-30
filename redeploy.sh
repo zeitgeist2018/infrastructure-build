@@ -1,10 +1,12 @@
 #!/bin/bash
 
+set -e
+
 source ./provision/util.sh
-source ./configure-local-dns.sh
+source ./provision/dns-server/configure-local-dns.sh
 
 function deleteAllData() {
-  cd data && find . \! -name '.gitkeep' | xargs rm -r
+  cd data && find . \! -name '.gitkeep' | xargs rm -r || true
   cd ..
 }
 
