@@ -2,7 +2,7 @@ version: '3'
 services:
   dnsmasq:
     restart: always
-    image: strm/dnsmasq
+    image: strm/dnsmasq:latest
     volumes:
       - ./conf/dnsmasq.conf:/etc/dnsmasq.conf
     ports:

@@ -25,6 +25,9 @@ function installDependencies(){
   sudo apt-get install jq resolvconf -y > /dev/null 2>&1
 }
 
+function pullDnsImage(){
+  docker pull strm/dnsmasq:latest
+}
 function disableDefaultDns(){
   echo "Disabling default system DNS"
   echo "DNSStubListener=no" | sudo tee -a /etc/systemd/resolved.conf
@@ -43,9 +46,10 @@ function addCertificatesToDocker(){
 installDependencies
 generateCertificates
 startReverseProxy
-startDnsServer
-disableDefaultDns
-restartDnsServer
+pullDnsImage
+disableDefaultDns || true
+startDnsServer || true
+restartDnsServer || true
 fetchDnsServerSettings vm
 configureDns
 addCertificatesToDocker

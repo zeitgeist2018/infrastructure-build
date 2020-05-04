@@ -3,11 +3,11 @@
 set -e
 
 function checkJq() {
-  jq --version >/dev/null 2>&1 || (echo "YOU NEED TO INSTALL JQ BEFORE PROCEEDING" && exit 1)
+  hash jq || (echo "YOU NEED TO INSTALL JQ BEFORE PROCEEDING" && exit 1)
 }
 
 function checkSystemctl() {
-  systemctl status resolvconf.service || (echo "YOU NEED TO INSTALL RESOLVCONF BEFORE PROCEEDING" && exit 1)
+  (systemctl --all --type service | grep -q "resolvconf.service") || (echo "YOU NEED TO INSTALL RESOLVCONF BEFORE PROCEEDING" && exit 1)
 }
 
 function fetchDnsServerSettings() {
@@ -34,7 +34,7 @@ function setDnsServerMacos() {
 }
 
 function setDnsServerLinux() {
-  sudo systemctl status resolvconf.service || (echo "YOU NEED TO INSTALL RESOLVCONF BEFORE PROCEEDING" && exit 1)
+  checkSystemctl
 cat <<EOF > tmp
 search $DOMAIN
 nameserver $DNS_SERVER
